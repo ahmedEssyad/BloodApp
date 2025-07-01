@@ -10,6 +10,10 @@
     "create-admin": "node createFirstAdmin.js",
     "init-admin": "node initAdminData.js"
   },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
