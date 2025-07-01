@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BloodApp"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <!-- Activité de login comme launcher -->
+        <activity 
+            android:name=".auth.LoginActivity" 
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        
+        <!-- Écran d'inscription -->
+        <activity 
+            android:name=".auth.RegisterActivity" 
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+        
+        <!-- Écran principal -->
+        <activity 
+            android:name=".MainActivity" 
+            android:exported="false"/>
+        
+        <!-- Autres activités -->
+        <activity android:name=".BloodRequestActivity"/>
+        <activity android:name=".DonorFormActivity"/>
+        <activity android:name=".RequestListActivity"/>
+        
+        <!-- Activités Admin -->
+        <activity 
+            android:name=".admin.AdminDashboardActivity" 
+            android:exported="false"
+            android:label="Tableau de bord Admin"/>
+        
+        <activity 
+            android:name=".admin.ManageUsersActivity" 
+            android:exported="false"
+            android:label="Gestion des utilisateurs"
+            android:parentActivityName=".admin.AdminDashboardActivity"/>
+        
+        <activity 
+            android:name=".admin.ManageBloodRequestsActivity" 
+            android:exported="false"
+            android:label="Gestion des demandes"
+            android:parentActivityName=".admin.AdminDashboardActivity"/>
+        
+        <activity 
+            android:name=".admin.ManageDonorsActivity" 
+            android:exported="false"
+            android:label="Gestion des donneurs"
+            android:parentActivityName=".admin.AdminDashboardActivity"/>
+        
+        <activity 
+            android:name=".admin.CreateAdminActivity" 
+            android:exported="false"
+            android:label="Créer un administrateur"
+            android:parentActivityName=".admin.AdminDashboardActivity"/>
+        
+        <activity 
+            android:name=".admin.ChangePasswordActivity" 
+            android:exported="false"
+            android:label="Changer le mot de passe"
+            android:parentActivityName=".admin.AdminDashboardActivity"/>
+        
+        <!-- Activités Utilisateur -->
+        <activity 
+            android:name=".user.UserDashboardActivity" 
+            android:exported="false"
+            android:label="Tableau de bord"/>
+        
+        <activity 
+            android:name=".user.ProfileActivity" 
+            android:exported="false"
+            android:label="Mon profil"
+            android:parentActivityName=".user.UserDashboardActivity"/>
+        
+        <activity 
+            android:name=".user.DonateBloodActivity" 
+            android:exported="false"
+            android:label="Faire un don"
+            android:parentActivityName=".user.UserDashboardActivity"/>
+        
+        <activity 
+            android:name=".user.MyDonationsActivity" 
+            android:exported="false"
+            android:label="Mes donations"
+            android:parentActivityName=".user.UserDashboardActivity"/>
+        
+        <activity 
+            android:name=".user.FindDonorsActivity" 
+            android:exported="false"
+            android:label="Trouver des donneurs"
+            android:parentActivityName=".user.UserDashboardActivity"/>
+        
+        <activity 
+            android:name=".user.NotificationsActivity" 
+            android:exported="false"
+            android:label="Notifications"
+            android:parentActivityName=".user.UserDashboardActivity"/>
+        
+        <activity 
+            android:name=".user.EditProfileActivity" 
+            android:exported="false"
+            android:label="Modifier le profil"
+            android:parentActivityName=".user.ProfileActivity"/>
+
+    </application>
+
+</manifest>

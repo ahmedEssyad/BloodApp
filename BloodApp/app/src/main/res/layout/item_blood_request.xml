@@ -1,0 +1,21 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:elevation="4dp">
+
+    <LinearLayout
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/hospitalText" android:textStyle="bold" android:textSize="18sp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <TextView android:id="@+id/bloodTypeText" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/unitsText" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/urgencyText" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/contactText" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

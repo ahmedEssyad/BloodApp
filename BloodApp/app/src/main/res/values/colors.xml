@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Couleurs principales de l'application -->
+    <color name="colorPrimary">#E53935</color>
+    <color name="colorPrimaryDark">#B71C1C</color>
+    <color name="colorAccent">#FF1744</color>
+    
+    <!-- Couleurs de texte -->
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorTextHint">#BDBDBD</color>
+    
+    <!-- Couleurs de fond -->
+    <color name="colorBackground">#FAFAFA</color>
+    <color name="colorBackgroundLight">#FFFFFF</color>
+    
+    <!-- Couleurs d'état -->
+    <color name="colorSuccess">#4CAF50</color>
+    <color name="colorError">#F44336</color>
+    <color name="colorWarning">#FFC107</color>
+    <color name="colorInfo">#2196F3</color>
+    
+    <!-- Couleurs pour les groupes sanguins -->
+    <color name="bloodGroupA">#F44336</color>
+    <color name="bloodGroupB">#3F51B5</color>
+    <color name="bloodGroupAB">#9C27B0</color>
+    <color name="bloodGroupO">#4CAF50</color>
+</resources>

@@ -1,0 +1,17 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:padding="20dp"
+        android:orientation="vertical">
+
+        <EditText android:id="@+id/hospital" android:hint="Hôpital" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/bloodType" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/units" android:hint="Unités nécessaires" android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/urgency" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/contactName" android:hint="Contact - Nom" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/contactPhone" android:hint="Contact - Téléphone" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <Button android:id="@+id/submitBtn" android:text="Envoyer la demande" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>
