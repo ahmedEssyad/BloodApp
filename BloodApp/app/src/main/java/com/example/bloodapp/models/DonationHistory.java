@@ -75,4 +75,16 @@ public class DonationHistory {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+    
+    public String getLocation() {
+        return donationCenter;
+    }
+    
+    public int getUnitsdonated() {
+        return unitsGiven;
+    }
+    
+    public String getStatus() {
+        return "completed"; // Default status
+    }
 }

@@ -19,6 +19,14 @@ public class BloodRequest {
     public String getHospital() {
         return hospital;
     }
+    
+    public String getHospitalName() {
+        return hospital;
+    }
+    
+    public String getLocation() {
+        return hospital; // Using hospital as location for now
+    }
 
     public String getBloodType() {
         return bloodType;

@@ -58,21 +58,31 @@ public class MainActivity extends AppCompatActivity {
 
             ApiService api = RetrofitClient.getClient().create(ApiService.class);
 
-            api.createBloodRequest(r1).enqueue(new Callback<BloodRequest>() {
-                @Override public void onResponse(Call<BloodRequest> call, Response<BloodRequest> response) {}
-                @Override public void onFailure(Call<BloodRequest> call, Throwable t) {}
-            });
-            api.createBloodRequest(r2).enqueue(new Callback<BloodRequest>() {
-                @Override public void onResponse(Call<BloodRequest> call, Response<BloodRequest> response) {}
-                @Override public void onFailure(Call<BloodRequest> call, Throwable t) {}
-            });
-            api.createBloodRequest(r3).enqueue(new Callback<BloodRequest>() {
-                @Override public void onResponse(Call<BloodRequest> call, Response<BloodRequest> response) {}
-                @Override public void onFailure(Call<BloodRequest> call, Throwable t) {}
-            });
+            // Create a reusable callback to avoid D8 issues with empty anonymous classes
+            Callback<BloodRequest> seedCallback = createSeedCallback();
+            
+            api.createBloodRequest(r1).enqueue(seedCallback);
+            api.createBloodRequest(r2).enqueue(seedCallback);
+            api.createBloodRequest(r3).enqueue(seedCallback);
 
             // Marquer que les données ont été insérées
             prefs.edit().putBoolean("requestsSeeded", true).apply();
+        }
+    }
+    
+    private Callback<BloodRequest> createSeedCallback() {
+        return new SeedDataCallback();
+    }
+    
+    private static class SeedDataCallback implements Callback<BloodRequest> {
+        @Override
+        public void onResponse(Call<BloodRequest> call, Response<BloodRequest> response) {
+            // Silent seed operation - no UI feedback needed
+        }
+        
+        @Override
+        public void onFailure(Call<BloodRequest> call, Throwable t) {
+            // Silent failure - seed data is not critical
         }
     }
 }

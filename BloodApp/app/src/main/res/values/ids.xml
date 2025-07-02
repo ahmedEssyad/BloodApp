@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="tvActiveRequests" type="id">tvActiveRequests</item>
+    <item name="tvActiveRequests" type="id"/>
+    <item name="tvNextEligible" type="id"/>
 </resources>

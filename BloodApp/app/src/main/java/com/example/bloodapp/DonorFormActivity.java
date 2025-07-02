@@ -45,22 +45,25 @@ public class DonorFormActivity extends AppCompatActivity {
                     dateInput.getText().toString()
             );
 
-            apiService.createDonor(donor).enqueue(new Callback<Donor>() {
-                @Override
-                public void onResponse(Call<Donor> call, Response<Donor> response) {
-                    if (response.isSuccessful()) {
-                        Toast.makeText(DonorFormActivity.this, "Donneur enregistré !", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(DonorFormActivity.this, "Erreur: " + response.code(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Donor> call, Throwable t) {
-                    Toast.makeText(DonorFormActivity.this, "Erreur réseau: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            apiService.createDonor(donor).enqueue(new DonorRegistrationCallback());
         });
+    }
+    
+    private class DonorRegistrationCallback implements Callback<Donor> {
+        @Override
+        public void onResponse(Call<Donor> call, Response<Donor> response) {
+            if (response.isSuccessful()) {
+                Toast.makeText(DonorFormActivity.this, "Donneur enregistré !", Toast.LENGTH_SHORT).show();
+                finish(); // Close the activity after successful registration
+            } else {
+                Toast.makeText(DonorFormActivity.this, "Erreur: " + response.code(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Donor> call, Throwable t) {
+            Toast.makeText(DonorFormActivity.this, "Erreur réseau: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

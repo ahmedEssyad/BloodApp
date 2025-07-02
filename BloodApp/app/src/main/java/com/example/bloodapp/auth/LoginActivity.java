@@ -138,48 +138,50 @@ public class LoginActivity extends AppCompatActivity {
 
         // Envoyer la demande au serveur
         Call<AuthResponse> call = apiService.login(authRequest);
-        call.enqueue(new Callback<AuthResponse>() {
-            @Override
-            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-                btnLogin.setEnabled(true);
-                btnLogin.setText("Se connecter");
+        call.enqueue(new LoginCallback());
+    }
+    
+    private class LoginCallback implements Callback<AuthResponse> {
+        @Override
+        public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+            btnLogin.setEnabled(true);
+            btnLogin.setText("Se connecter");
 
-                if (response.isSuccessful() && response.body() != null) {
-                    AuthResponse authResponse = response.body();
-                    
-                    // Enregistrer le token et les informations utilisateur
-                    sessionManager.saveAuthToken(authResponse.getToken());
-                    sessionManager.saveUserDetails(authResponse.getUser().getFullName(), 
-                                                  authResponse.getUser().getEmail(), 
-                                                  authResponse.getUser().getBloodGroup());
-                    
-                    // Afficher un message de succès
-                    Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
-                    
-                    // Rediriger vers l'activité appropriée selon le rôle
-                    Intent intent;
-                    if (authResponse.getUser() != null && authResponse.getUser().isAdmin()) {
-                        intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
-                    } else {
-                        intent = new Intent(LoginActivity.this, MainActivity.class);
-                    }
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
+            if (response.isSuccessful() && response.body() != null) {
+                AuthResponse authResponse = response.body();
+                
+                // Enregistrer le token et les informations utilisateur
+                sessionManager.saveAuthToken(authResponse.getToken());
+                sessionManager.saveUserDetails(authResponse.getUser().getFullName(), 
+                                              authResponse.getUser().getEmail(), 
+                                              authResponse.getUser().getBloodGroup());
+                
+                // Afficher un message de succès
+                Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                
+                // Rediriger vers l'activité appropriée selon le rôle
+                Intent intent;
+                if (authResponse.getUser() != null && authResponse.getUser().isAdmin()) {
+                    intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
                 } else {
-                    // Afficher un message d'erreur
-                    String errorMessage = ErrorHandler.parseError(response);
-                    Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                    intent = new Intent(LoginActivity.this, MainActivity.class);
                 }
-            }
-
-            @Override
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
-                btnLogin.setEnabled(true);
-                btnLogin.setText("Se connecter");
-                String errorMessage = ErrorHandler.getErrorMessage(t);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            } else {
+                // Afficher un message d'erreur
+                String errorMessage = ErrorHandler.parseError(response);
                 Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
             }
-        });
+        }
+
+        @Override
+        public void onFailure(Call<AuthResponse> call, Throwable t) {
+            btnLogin.setEnabled(true);
+            btnLogin.setText("Se connecter");
+            String errorMessage = ErrorHandler.getErrorMessage(t);
+            Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+        }
     }
 }

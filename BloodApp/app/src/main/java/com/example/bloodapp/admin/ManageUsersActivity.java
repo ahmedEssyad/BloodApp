@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodapp.R;
 import com.example.bloodapp.auth.SessionManager;
+import com.example.bloodapp.models.RoleUpdateRequest;
 import com.example.bloodapp.models.User;
 import com.example.bloodapp.network.ApiService;
 import com.example.bloodapp.network.RetrofitClient;
