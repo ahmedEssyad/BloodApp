@@ -3,6 +3,7 @@ package com.example.bloodapp.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -272,8 +273,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(Call<AuthResponse> call, Throwable t) {
                 btnRegister.setEnabled(true);
                 btnRegister.setText("S'inscrire");
+                
+                // Enhanced error logging
+                Log.e("REGISTER_ERROR", "Registration failed", t);
+                Log.e("REGISTER_ERROR", "Error type: " + t.getClass().getSimpleName());
+                Log.e("REGISTER_ERROR", "Error message: " + t.getMessage());
+                
                 String errorMessage = ErrorHandler.getErrorMessage(t);
-                Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Erreur réseau: " + errorMessage, Toast.LENGTH_LONG).show();
             }
         });
     }
